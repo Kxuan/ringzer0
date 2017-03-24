@@ -1,0 +1,10 @@
+#!/bin/bash
+
+SALT="$1"
+HASH="$2"
+for ((i=0;i<10000;i++)); do
+    if [[ $HASH = $(echo -n $i$SALT | sha1sum| cut -d\  -f1) ]]; then
+        echo $i
+        exit 1
+    fi
+done
