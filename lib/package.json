@@ -4,6 +4,6 @@
   "author": "kXuan <kxuanobj@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "dom-parser": "^0.1.5"
+    "fast-html-parser": "^1.0.1"
   }
 }
