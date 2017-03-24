@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for ((i=0;i<10000;i++)); do
+    echo $i:$(echo -n $i | sha1sum| cut -d\  -f1)
+done

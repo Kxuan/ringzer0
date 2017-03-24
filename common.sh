@@ -23,8 +23,12 @@ func_curl() {
             exit 127
         fi
     done
-    curl -s -A "RingZer0/0.1" -H 'Cookie: PHPSESSID='$PHPSESSID "$@"
+    local -a args=()
+    if [[ -n $CURL_VERBOSE ]]; then
+        args+=(-v)
+    fi
+    curl "${args[@]}" -s -A "RingZer0/0.1" -H 'Cookie: PHPSESSID='$PHPSESSID "$@"
 }
 
 override curl func_curl
-QID=$(basename ${BASH_SOURCE[1]})
+QID=$(basename $(dirname $(readlink -f ${BASH_SOURCE[1]})))
