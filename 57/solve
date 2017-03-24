@@ -12,7 +12,7 @@ curl 'https://ringzer0team.com/challenges/'$QID'/'$ans -H 'Referer: https://ring
 }
 
 lookup() {
-    ./match "$salt" "$hash"
+    ./sha1 "$salt" "$hash"
 }
 get
 ans=$(lookup $message)
