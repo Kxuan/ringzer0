@@ -1,0 +1,23 @@
+#!/bin/bash
+. ../common.sh
+get() {
+curl 'https://ringzer0team.com/challenges/'$QID -H 'Referer: https://ringzer0team.com/challenges' > tmp
+csrf=$(grep csrf tmp | cut -d\" -f6)
+message=$(sed -e 's/<[^>]*>//g' tmp  | grep -A1 BEGIN | head -n2 | tail -n1 | cut -d$'\t' -f3 | dos2unix)
+#body=$(grep -A1 BEGIN tmp | cut -d$'\x9'  -f3 | cut -d\< -f1 | tail -n1 )
+}
+post() {
+curl 'https://ringzer0team.com/challenges/'$QID'/'$ans -H 'Referer: https://ringzer0team.com/challenges/'$QID
+}
+
+lookup() {
+   base64 -d | base64 -d | base64 -d | base64 -d  | ./reverse > tmp.elf
+   chmod +x tmp.elf
+   LD_PRELOAD=./nosleep.so ./tmp.elf
+}
+
+get
+ans=$(lookup <<< $message)
+echo $ans
+post | grep -A2 challenge-wrapper
+
