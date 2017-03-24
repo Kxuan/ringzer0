@@ -27,4 +27,4 @@ func_curl() {
 }
 
 override curl func_curl
-
+QID=$(basename ${BASH_SOURCE[1]})
