@@ -56,5 +56,10 @@ retrive_code_block() {
     done
 }
 
+submit_answer() {
+    local answer="$1"
+    curl https://ringzer0team.com/challenges/$QID/"$answer" | grep -A1 "challenge-wrapper"
+}
+
 override curl func_curl
 QID=$(basename $(dirname $(readlink -f ${BASH_SOURCE[1]})))
