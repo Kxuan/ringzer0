@@ -2,6 +2,6 @@
 
 . ../common.sh
 
-ans=$(retrive_challenge | retrive_code_block SHELLCODE | tee tmp.code | ./execute_code)
+ans=$(retrieve_challenge | parse_block SHELLCODE | tee tmp.code | ./execute_code)
 
 submit_answer $ans

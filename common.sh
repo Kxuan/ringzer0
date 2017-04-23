@@ -30,7 +30,7 @@ func_curl() {
     curl "${args[@]}" -s -A "RingZer0/0.1" -H 'Cookie: PHPSESSID='$PHPSESSID "$@"
 }
 
-retrive_challenge() {
+retrieve_challenge() {
     local rc
     pushd $(dirname ${BASH_SOURCE[0]})/lib/ >/dev/null
     curl 'https://ringzer0team.com/challenges/'$QID -H 'Referer: https://ringzer0team.com/challenges' | node parser.js | dos2unix
@@ -39,7 +39,7 @@ retrive_challenge() {
     return $rc
 }
 
-retrive_code_block() {
+parse_block() {
     local keyword="$1"
     local write_code=false
     while read -r line; do
